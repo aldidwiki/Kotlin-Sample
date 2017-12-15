@@ -5,5 +5,5 @@ fun main(args: Array<String>) {
     c = 1
 
     var x = 5
-    x += 1
+    x += 2
 }
