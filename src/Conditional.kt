@@ -1,4 +1,13 @@
-fun describe(any: Any): String {
+fun describe(any: Any) =
+        when (any) {
+            1 -> "One"
+            "Hello" -> "Greeting"
+            is Long -> "Long"
+            !is String -> "Not a String"
+            else -> "unknown"
+        }
+
+fun describe2(any: Any): String {
     return when (any) {
         1 -> "One"
         "Hello" -> "Greeting"
@@ -12,8 +21,24 @@ fun isString(any: Any): Boolean {
     if (any is String) return true else return false
 }
 
+fun foo() {
+    val result = try {
+
+    } catch (e: ArithmeticException) {
+        throw IllegalStateException(e)
+    }
+}
+
+fun foo(param: Int) {
+    val result = if (param == 1) {
+        "one"
+    } else {
+        "two"
+    }
+}
+
 fun main(args: Array<String>) {
-    println(describe("Hello"))
+    println(describe("other"))
     println(isString(111))
 
     val list = listOf("a", "b", "c")
@@ -29,14 +54,14 @@ fun main(args: Array<String>) {
         println("x fits in range")
     }
 
-    val items = setOf("orange", "apple")
+    val items = listOf("orange", "apple")
     when {
         "orange" in items -> println("juicy")
         "apple" in items -> println("apple is fine too")
     }
 
     val fruits = listOf("banana", "apple", "avocado", "kiwi")
-    fruits.filter { it.startsWith("a") }
+    fruits.filter { it.startsWith("a").and(it.endsWith("o")) }
             .sortedBy { it }
             .map { it.toUpperCase() }
             .forEach { println(it) }
